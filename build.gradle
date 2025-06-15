@@ -1,0 +1,13 @@
+// This is a minimal build file to help IntelliJ recognize the project structure
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}

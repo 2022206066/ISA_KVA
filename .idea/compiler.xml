@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ISA_KVA.backend" options="-parameters" />
+      <module name="ISA_KVA.backend.main" options="-parameters" />
+      <module name="ISA_KVA.backend.test" options="-parameters" />
+      <module name="backend" options="-parameters" />
+    </option>
+  </component>
+</project>

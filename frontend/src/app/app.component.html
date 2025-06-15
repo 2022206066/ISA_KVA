@@ -1,0 +1,60 @@
+<div class="app-container">
+  <mat-toolbar color="primary">
+    <a routerLink="/" class="logo">Cinema Ticket System</a>
+    <span class="spacer"></span>
+    <nav>
+      <a mat-button routerLink="/movies" routerLinkActive="active">Movies</a>
+      
+      <!-- Show these if user is logged in -->
+      <ng-container *ngIf="authService.isLoggedIn()">
+        <a mat-button routerLink="/reservations" routerLinkActive="active">My Reservations</a>
+        
+        <a mat-button routerLink="/cart" routerLinkActive="active">
+          <mat-icon aria-hidden="false" aria-label="Shopping Cart" [matBadge]="getCartItemCount()" [matBadgeHidden]="getCartItemCount() === 0" matBadgeColor="accent">shopping_cart</mat-icon>
+          Cart
+        </a>
+        
+        <button mat-button [matMenuTriggerFor]="userMenu">
+          <mat-icon>account_circle</mat-icon>
+          {{ getUserName() }}
+        </button>
+        
+        <mat-menu #userMenu="matMenu">
+          <a mat-menu-item routerLink="/profile">
+            <mat-icon>person</mat-icon>
+            <span>Profile</span>
+          </a>
+          
+          <!-- Show if user is admin -->
+          <ng-container *ngIf="authService.isAdmin()">
+            <a mat-menu-item routerLink="/admin">
+              <mat-icon>admin_panel_settings</mat-icon>
+              <span>Admin Dashboard</span>
+            </a>
+          </ng-container>
+          
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </ng-container>
+      
+      <!-- Show these if user is not logged in -->
+      <ng-container *ngIf="!authService.isLoggedIn()">
+        <a mat-button routerLink="/login" routerLinkActive="active">Login</a>
+        <a mat-button routerLink="/register" routerLinkActive="active">Register</a>
+      </ng-container>
+    </nav>
+  </mat-toolbar>
+  
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+  
+  <footer class="footer">
+    <div class="container">
+      <p>© {{ currentYear }} Cinema Ticket System. All rights reserved.</p>
+    </div>
+  </footer>
+</div> 
